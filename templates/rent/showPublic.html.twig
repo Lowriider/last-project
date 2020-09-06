@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% form_theme contactForm 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+<section class="rentAd">
+    <div class="container">
+        <h1> {{ rentAd.title }} </h1>
+        <p>{{ rentAd.user.username }}</p>
+        <p> Créé le {{ rentAd.createdAt | date('d/m/Y') }} à {{ rentAd.createdAt | date('H:i') }}
+            <div class="content">
+                <p>{{ rentAd.content | raw }}</p>
+
+                <img src="/uploads/{{ rentAd.image }}" alt="card-img-top">
+            </div>
+            {% if app.user %}
+            <div id="contactForm" class="mt-8">
+                {{ form_start(contactForm)}}
+                <div class="row">
+                    <div class="col">
+                        {{form_row(contactForm.to,{'attr': {'placeholder': "Adresse email",'value': rentAd.user.email, 'readonly' : true}})}}
+                    </div>
+                    <div class="col">{{form_row(contactForm.mail,{'attr': {'placeholder': "Adresse email",'value': app.user.email, 'readonly' : true}})}}</div>
+                </div>
+                <div class="row">
+                    <div class="col">{{form_row(contactForm.message,{'attr': {'placeholder': "Votre message"}})}}</div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Contacter la personne</a>
+            {{ form_end(contactForm) }}
+            {% else %}
+            <div class="contact" id="contact">
+                <h1> vous devez être connecté pour contacter le propriétaire du paddle <a href="{{ path('app_login') }}"
+                        class="btn btn-primary">Connexion</a></h1>
+            </div>
+            {% endif %}
+    </div>
+</section>
+{% endblock %}

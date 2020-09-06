@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/solar/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    {% block stylesheets %}{% endblock %}
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ path('home') }}">LoueTonPaddle</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+            aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('home') }}">Accueil <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('rent') }}">Coin des Annonces</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('contact_us') }}">Contactez nous</a>
+                </li>
+                {% if app.user %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('rent_create') }}">Créer une Annonce</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('my_rent_ads') }}">Modifiez mes Annonces</a>
+                </li>
+                
+                {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('admin') }}">Interface d'administration</a>
+                    </li>
+                {% endif %}
+
+                {# <pre>
+                    {{ dump(app.user.roles[0]) }}
+                </pre> #}
+             
+            </ul>
+            <a href="{{ path('app_logout') }}" class="btn btn-danger">Déconnexion</a>
+            {% else %}
+            <a href="{{ path('security_registration') }}" class="btn btn-primary">S'inscrire</a>
+            <a href="{{ path('app_login') }}" class="btn btn-success">Connexion</a>
+            {% endif %}
+        </div>
+    </nav>
+    <div class="container">
+    {% for label, flashes in app.session.flashbag.all %}
+            {% for flash in flashes %}
+                {% if ( label == 'success' ) %}
+                    <div class="alert alert-success alert-dismissible fade show">
+                        {{ flash }}
+                    </div>
+                {% elseif ( label == 'error' ) %}
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        {{ flash }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+    {% endfor %}
+        {% block body %}
+        {% endblock %}
+    </div>
+    {% block javascripts %}{% endblock %}
+</body>
+
+</html>

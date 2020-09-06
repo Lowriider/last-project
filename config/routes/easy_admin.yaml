@@ -1,0 +1,5 @@
+easy_admin_bundle:
+    resource: '@EasyAdminBundle/Controller/EasyAdminController.php'
+    controller: App\Controller\Admin\DashboardController::index
+    prefix: /admin
+    type: annotation

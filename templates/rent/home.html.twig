@@ -1,0 +1,15 @@
+
+
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h1> {{ title }} </h1>
+    <div id="weather" class="weather">
+        <div id="city"></div>
+        <div id="icon"></div>
+        <div id="temp"></div>
+        <div id="actualWeather"></div>
+        <div id="wind"></div>
+    </div>
+    <script src="{{asset('js/app.js')}}"></script>
+{% endblock %}

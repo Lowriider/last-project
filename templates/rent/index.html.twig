@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RentController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    {% for rentAd in rentAds %}
+        <div class="rentAd">
+            <div class="content">
+                <h1> {{ rentAd.title }} </h1>
+                <p>{{rentAd.nickname}}</p>
+                <p> Créé le {{ rentAd.createdAt | date('d/m/Y') }} à {{ rentAd.createdAt | date('H:i') }}</p>
+                <p>{{ rentAd.content | raw }}</p>
+                <a class="btn btn-success"href="{{ path('rent_show', {'id': rentAd.id}) }}">suite</a>
+            </div>
+            <div class="image">
+                <img src="/uploads/{{ rentAd.image }}" width="200px" height="215px" alt="">
+            </div>
+       </div>
+    {% endfor %}
+</div>
+ <div class="navigation">
+    <p class="pages">{{ knp_pagination_render(rentAds) }}</p>
+</div>
+{% endblock %}

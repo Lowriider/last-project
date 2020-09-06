@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+{% form_theme contactForm 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+     <div id="contactForm" class="mt-8">
+                {{ form_start(contactForm)}}
+                <div class="row">
+                {% if app.user %}
+                     <div class="col">
+                       {{form_row(contactForm.to,{'attr': {'value': "paddle_rent@rent.com",'placeholder': "Adresse email", 'readonly' : true}})}}
+                    </div>
+                    <div class="col">{{form_row(contactForm.mail,{'attr': {'value': app.user.email,'placeholder': "Adresse email", 'readonly' : true}})}}</div>
+                {% else %}
+                    <div class="col">
+                       {{form_row(contactForm.to,{'attr': {'value': "paddle_rent@rent.com",'placeholder': "Adresse email", 'readonly' : true}})}}
+                    </div>
+                    <div class="col">{{form_row(contactForm.mail,{'attr': {'placeholder': "Adresse email"}})}}</div>
+                {% endif %}
+                </div>
+                <div class="row">
+                    <div class="col">{{form_row(contactForm.message,{'attr': {'placeholder': "Votre message"}})}}</div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Contacter le Staff</a>
+            {{ form_end(contactForm) }}
+{% endblock %}

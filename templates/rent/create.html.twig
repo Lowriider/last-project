@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% form_theme formRentAd 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+<h1>
+    {% if editMode %}
+    Modifier l'annonce
+    {% else %}
+    Nouvelle annonce de Loc'
+    {% endif %}
+</h1>
+<div id="createform" class="mt-8">
+    {{ form_start(formRentAd)}}
+    <div class="row">
+        <div class="col">{{form_row(formRentAd.nickname,{'attr': {'value': app.user.username, 'readonly' : true}})}}
+        </div>
+        <div class="col">{{form_row(formRentAd.title,{'attr': {'placeholder': "Titre"}})}}</div>
+    </div>
+    <div class="row">
+        <div class="col"> {{form_row(formRentAd.content,{'attr': {'placeholder': "Contenu de l'annonce"}})}}</div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{form_row(formRentAd.image,{'attr': {'placeholder': "Upload de l'image", 'multiple accept' :".png, .jpg, .jpeg, .gif"}})}}
+        </div>
+    </div>
+</div>
+<div id="image-preview" class="container">
+    {% if rentAd.getImage %}
+    <img src="/uploads/{{ rentAd.getImage }}" alt="" class="image-preview">
+    {% else %}
+    <img src="#" alt="" class="image-preview">
+    {% endif %}
+
+    <span class="image-preview__default-text"> Aperçu de l'image </span>
+</div>
+{% if editMode %}
+<button type="submit" class="btn btn-success">Valider les modifications</button>
+<a href="{{ path('my_rent_ads')}}" class="btn btn-danger">Annuler</a>
+{% else %}
+<button type="submit" class="btn btn-success">Ajouter l'annonce </button>
+<a href="{{ path('rent')}}" class="btn btn-danger">Annuler</a>
+{% endif %}
+
+
+<script src="{{asset('js/preview.js')}}"></script>
+
+{{ form_end(formRentAd) }}
+</div>
+{% endblock %}
