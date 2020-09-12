@@ -9,7 +9,6 @@ class weatherClass {
         request.onreadystatechange = function () {
             if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
                 var infos = JSON.parse(this.responseText); // recupere les datas de JCDecaux et place les marqueurs sur la carte //
-                console.log(infos);
                 let city = infos.name;
                 let wind = infos.wind.speed;
                 let temp = infos.main.temp;
@@ -17,7 +16,6 @@ class weatherClass {
                 for (let i = 0; i < infos.weather.length; i++) {
                     let actualWeather = infos.weather[i].description;
                     let icon = infos.weather[i].icon;
-                    console.log(actualWeather);
                     let iconUrl = `<img src="http://openweathermap.org/img/wn/${icon}.png">`;
                     let cityDiv = document.getElementById("city");
                     let windDiv = document.getElementById("wind");

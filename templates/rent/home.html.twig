@@ -1,15 +1,31 @@
 
-
 {% extends "base.html.twig" %}
-
 {% block body %}
-    <h1> {{ title }} </h1>
-    <div id="weather" class="weather">
-        <div id="city"></div>
-        <div id="icon"></div>
-        <div id="temp"></div>
-        <div id="actualWeather"></div>
-        <div id="wind"></div>
+    <div class="container-fluid" id="welcome-msg-slider">
+        <div id="text"></div>
     </div>
+    <div id="timeline-container">
+        <div id="timeline"></div>
+    </div>
+    <div id="map_container">
+        <div id="carte"></div>
+        <div id="weather" class="weather">
+        <div id="meteo">
+            <p> météo en temps réel</p>
+            <div id="city"></div>
+            <div id="icon"></div>
+            <div id="temp"></div>
+            <div id="actualWeather"></div>
+            <div id="wind"></div>
+        </div>
+        
+        </div>
+    </div>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+            crossorigin=""></script>
+             <script src="{{asset('js/slider.js')}}"></script>
     <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('js/front.js')}}"></script>
+   
 {% endblock %}

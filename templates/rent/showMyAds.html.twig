@@ -2,19 +2,29 @@
 
 {% block body %}
     <h1>toutes vos annonces</h1>
-{% for myRentAd in myRentAds %}
 <section class="myRentAd">
-    <div class="container">
-        <h1> {{ myRentAd.title }} </h1>
-        <p>{{myRentAd.nickname}}</p>
-        <p> Créé le {{ myRentAd.createdAt | date('d/m/Y') }} à {{ myRentAd.createdAt | date('H:i') }}
-        <div class="content">
-            <p>{{ myRentAd.content | raw }}</p>
-            <img src="/uploads/{{ myRentAd.image }}" width="200px" alt="">
+    <div id="myAds" class="container">
+        <div class="table-responsive">
+            <table class="table table-hover table-dark">
+                <tr>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Auteur</th>
+                    <th scope="col">date de création</th>
+                    <th scope="col">Editer</th>
+                    <th scope="col">Supprimer</th>
+                </tr>
+                {% for myRentAd in myRentAds %}
+                <tr>
+                    <th scope="row"> {{ myRentAd.title }} </th>
+                        <td>{{myRentAd.nickname}}</td>
+                        <td> Créé le {{ myRentAd.createdAt | date('d/m/Y') }}  à {{ myRentAd.createdAt | date('H:i') }}</td>
+                        <td><a class="btn btn-success" href="{{ path('rent_edit',{id:myRentAd.id}) }}">Modifier</a></td>
+                        <td><a class="btn btn-danger "href="{{ path('delete_ad',{id:myRentAd.id}) }}">Supprimer</a></td>
+                </tr>   
+                {% endfor %}
+            </table>
         </div>
-        <a class="btn btn-success"href="{{ path('rent_edit',{id:myRentAd.id}) }}">Modifier</a>
-        <a class="btn btn-danger"href="{{ path('delete_ad',{id:myRentAd.id}) }}">Supprimer</a>
     </div>
 </section>
-{% endfor %}
+
 {% endblock %}

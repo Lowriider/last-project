@@ -16,8 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Knp\Component\Pager\PaginatorInterface;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Tools\Pagination\Paginator;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class RentController extends AbstractController
 {
@@ -42,9 +40,7 @@ class RentController extends AbstractController
      *  @Route("/", name="home")
      */
     public function home() {
-        return $this->render('rent/home.html.twig', [
-            'title'=> "Bienvenue sur le site de location de paddle d'Annecy"
-        ]);
+        return $this->render('rent/home.html.twig');
     }
 
      /**

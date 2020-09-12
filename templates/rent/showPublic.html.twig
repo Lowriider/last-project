@@ -13,7 +13,7 @@
                 <img src="/uploads/{{ rentAd.image }}" alt="card-img-top">
             </div>
             {% if app.user %}
-            <div id="contactForm" class="mt-8">
+            <div id="contactLoc" class="mt-8">
                 {{ form_start(contactForm)}}
                 <div class="row">
                     <div class="col">
@@ -24,13 +24,14 @@
                 <div class="row">
                     <div class="col">{{form_row(contactForm.message,{'attr': {'placeholder': "Votre message"}})}}</div>
                 </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Contacter la personne</a>
-            {{ form_end(contactForm) }}
-            {% else %}
-            <div class="contact" id="contact">
-                <h1> vous devez être connecté pour contacter le propriétaire du paddle <a href="{{ path('app_login') }}"
-                        class="btn btn-primary">Connexion</a></h1>
+            
+                <button type="submit" class="btn btn-primary">Contacter la personne</a>
+                {{ form_end(contactForm) }}
+                {% else %}
+                <div class="contact" id="contact">
+                    <h1> vous devez être connecté pour contacter le propriétaire du paddle <a href="{{ path('app_login') }}"
+                            class="btn btn-primary">Connexion</a></h1>
+                </div>
             </div>
             {% endif %}
     </div>

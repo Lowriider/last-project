@@ -1,76 +1,49 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/solar/bootstrap.min.css">
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    {% block stylesheets %}{% endblock %}
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{{ path('home') }}">LoueTonPaddle</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
-            aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarColor02">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ path('home') }}">Accueil <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('rent') }}">Coin des Annonces</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('contact_us') }}">Contactez nous</a>
-                </li>
-                {% if app.user %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('rent_create') }}">Créer une Annonce</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('my_rent_ads') }}">Modifiez mes Annonces</a>
-                </li>
-                
-                {% if app.user.roles[0] == 'ROLE_ADMIN' %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('admin') }}">Interface d'administration</a>
-                    </li>
-                {% endif %}
-
-                {# <pre>
-                    {{ dump(app.user.roles[0]) }}
-                </pre> #}
-             
-            </ul>
-            <a href="{{ path('app_logout') }}" class="btn btn-danger">Déconnexion</a>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <title>Loue Ton Paddle</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/solar/bootstrap.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+        <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    </head>
+    <body>
+        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-dark border-bottom box-shadow">
+            <h5 class="my-0 mr-md-auto font-weight-normal"><a href="{{ path('home') }}">LouesTonPaddle</a></h5>
+            <nav class="my-2 my-md-0 mr-md-3">
+                    <a class="p-2 text-grey" href="{{ path('home') }}"></a>
+                    <a class="p-2 text-grey" href="{{ path('rent') }}">Coin des Annonces</a>
+                    <a class="p-2 text-grey" href="{{ path('contact_us') }}">Contactez nous</a>
+                    {% if app.user %}
+                    <a class="p-2 text-grey" href="{{ path('rent_create') }}">Créer une Annonce</a>
+                    <a class="p-2 text-grey" href="{{ path('my_rent_ads') }}">Modifiez mes Annonces</a>
+                    {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+                    <a class="p-2 text-grey" href="{{ path('admin') }}">Interface d'administration</a>
+                    {% endif %}
+            </nav>
+            <a class="btn btn-danger" href="{{ path('app_logout') }}">Déconnexion</a>
             {% else %}
-            <a href="{{ path('security_registration') }}" class="btn btn-primary">S'inscrire</a>
-            <a href="{{ path('app_login') }}" class="btn btn-success">Connexion</a>
+            <a class="btn btn-success" href="{{ path('app_login') }}">Login</a>
+            <a class="btn btn-primary" href="{{ path('security_registration') }}">S'inscrire</a>
             {% endif %}
         </div>
-    </nav>
-    <div class="container">
-    {% for label, flashes in app.session.flashbag.all %}
-            {% for flash in flashes %}
-                {% if ( label == 'success' ) %}
-                    <div class="alert alert-success alert-dismissible fade show">
-                        {{ flash }}
-                    </div>
-                {% elseif ( label == 'error' ) %}
-                    <div class="alert alert-danger alert-dismissible fade show">
-                        {{ flash }}
-                    </div>
-                {% endif %}
-            {% endfor %}
-    {% endfor %}
-        {% block body %}
-        {% endblock %}
-    </div>
-    {% block javascripts %}{% endblock %}
-</body>
+        {% for label, flashes in app.session.flashbag.all %}
+                {% for flash in flashes %}
+                    {% if ( label == 'success' ) %}
+                        <div class="alert alert-success alert-dismissible fade show">
+                            {{ flash }}
+                        </div>
+                    {% elseif ( label == 'error' ) %}
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            {{ flash }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+        {% endfor %}
+        <footer id="footer" class="container-fluid">
+                    <p>Tous droits réservés © <a href="https://powned.fr">Lowriider</a> 2020  - Formation Openclassrooms - Développeur Web Junior - Projet n°5 : projet libre</p>
+        </footer>
+    </body>
 
 </html>

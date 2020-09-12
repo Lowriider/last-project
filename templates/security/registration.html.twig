@@ -1,8 +1,9 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-<h1>Inscrivez vous</h1>
 
+<div id="form" class="col-4">
+<h1>Inscrivez vous</h1>
 {{ form_start(form) }}
 {{ form_row(form.username, {'label':'Nom d\'utilisateur','attr': 
 {'placeholder' : 'Nom d\'utilisateur'}}) }}
@@ -14,4 +15,5 @@
 {'placeholder' : 'Répétez vôtre mot de passe'}}) }} 
 <button type="submit" class="btn btn-success">Inscription</button>
 {{ form_end(form) }}
+</div>
 {% endblock %}

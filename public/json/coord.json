@@ -1,0 +1,61 @@
+{
+    "shop": [
+        {
+            "name": "V-boat",
+            "address":"45 Avenue du Petit Port, 74940 Annecy-le-vieux",
+            "phone":"06 68 19 02 44",
+            "long":"45.905543",
+            "lat":"6.154484",
+            "url":"https://v-boat.fr/"
+        },
+        {
+            "name": "Ncy Sup" ,
+            "address":"166 Chemin vers Rives, 74320 Sévrier",
+            "phone":"06 85 85 60 06",
+            "long":"45.853824",
+            "lat":"6.149061",
+            "url":"https://ncy-sup.com/"
+        },
+        {
+            "name":"Gliss'cool" ,
+            "address":"Chalet numéros 4 Espace lac, 74290 Talloires",
+            "phone":" 06 16 19 53 90",
+            "long":"45.828004",
+            "lat":"6.218832",
+            "url":"https://www.stand-up-paddle-annecy.com/"
+        },
+        {
+            "name": "Source Board Shop",
+            "address":"13 Avenue de Chavoires",
+            "phone":"04 50 66 80 44",
+            "long":"45.904370",
+            "lat":"6.159869",
+            "url":"https://www.sourceboardshop.com/"
+        },
+        {
+            "name": "Wake The Best",
+            "address":"590 Route d'Annecy, 74410 Duingt",
+            "phone":"06 80 98 89 13",
+            "long":"45.828328",
+            "lat":"6.199963",
+            "url":"http://www.wakethebest.com/"
+        },
+        {
+            "name": "Ponton de l'embarcadère",
+            "address":"Esplanade de l'espérance, 74410 Saint-Jorioz",
+            "phone":"06 67 24 57 16",
+            "long":"45.843987",
+            "lat":"6.174454",
+            "url":"http://www.wakeannecy.fr/"
+        },
+        {
+            "name": "Stand-Up-Annecy",
+            "address":"477 Prom. des Seines, 74320 Sévrier",
+            "phone":"06 70 54 31 24",
+            "long":"45.871463",
+            "lat":"6.143980",
+            "url":"https://www.stand-up-annecy.com/dev/"
+        }
+        
+    ]
+}
